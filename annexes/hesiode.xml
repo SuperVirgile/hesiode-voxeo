@@ -1,0 +1,56 @@
+<grammar xml:lang="fr-fr" root="hesiode">
+	<rule id="hesiode" scope="public">
+		<one-of>
+			<item> personne ne mécoute <tag>$='personne ne mécoute'</tag></item>
+			<item> personne ne maime <tag>$='personne ne maime'</tag></item>
+			<item> les gens sont méchants <tag>$='les gens sont méchants'</tag></item>
+			<item> je suis imparfait <tag>$='je suis imparfait'</tag></item>
+			<item> je suis injuste <tag>$='je suis injuste'</tag></item>
+			<item> je suis oisif <tag>$='je suis oisif'</tag></item>
+			<item> je juge les gens trop vite <tag>$='je juge les gens trop vite'</tag></item>
+			<item> je suis desordonné <tag>$='je suis desordonné'</tag></item>
+			<item> je parle trop <tag>$='je parle trop'</tag></item>
+			<item> je suis très coquet <tag>$='je suis très coquet'</tag></item>
+			<item> je mens à mes amis <tag>$='je mens à mes amis'</tag></item>
+			<item> je suis impatient <tag>$='je suis impatient'</tag></item>
+			<item> jai des problèmes de couple <tag>$='jai des problèmes de couple'</tag></item>
+			<item> je travaille peu <tag>$='je travaille peu'</tag></item>
+			<item> je procrastine <tag>$='je procrastine'</tag></item>
+			<item> je suis pauvre <tag>$='je suis pauvre'</tag></item>
+			<item> je travaille mal <tag>$='je travaille mal'</tag></item>
+			<item> jaime trop les femmes <tag>$='jaime trop les femmes'</tag></item>
+			<item> jai peu de biens <tag>$='jai peu de biens'</tag></item>
+			<item> je vole <tag>$='je vole'</tag></item>
+			<item> je suis radin <tag>$='je suis radin'</tag></item>
+			<item> je ne sais qui aimer <tag>$='je ne sais qui aimer'</tag></item>
+			<item> je ne pense qua gagner <tag>$='je ne pense qua gagner'</tag></item>
+			<item> mon voisin est mauvais <tag>$='mon voisin est mauvais'</tag></item>
+			<item> je suis cupide <tag>$='je suis cupide'</tag></item>
+			<item> je suis paresseux <tag>$='je suis paresseux'</tag></item>
+			<item> jai la flemme <tag>$='jai la flemme'</tag></item>
+			<item> jai toujours faim <tag>$='jai toujours faim'</tag></item>
+			<item> je nécoute rien <tag>$='je nécoute rien'</tag></item>
+			<item> je nai pas confiance en moi <tag>$='je nai pas confiance en moi'</tag></item>
+			<item> je suis mauvais <tag>$='je suis mauvais'</tag></item>
+			<item> je suis violent <tag>$='je suis violent'</tag></item>
+			<item> je suis trop juste <tag>$='je suis trop juste'</tag></item>
+			<item> je suis perdu <tag>$='je suis perdu'</tag></item>
+			<item> je suis tropinjuste <tag>$='je suis tropinjuste'</tag></item>
+			<item> je fais des erreurs <tag>$='je fais des erreurs'</tag></item>
+			<item> jai peur de vieillir <tag>$='jai peur de vieillir'</tag></item>
+			<item> il me faut tout <tag>$='il me faut tout'</tag></item>
+			<item> je veux être célèbre <tag>$='je veux être célèbre'</tag></item>
+			<item> je suis malheureux <tag>$='je suis malheureux'</tag></item>
+			<item> je blasphème <tag>$='je blasphème'</tag></item>
+			<item> je naime pas mon frère <tag>$='je naime pas mon frère'</tag></item>
+			<item> je ne suis pas soigneux <tag>$='je ne suis pas soigneux'</tag></item>
+			<item> je suis belligérant <tag>$='je suis belligérant'</tag></item>
+			<item> le temps passe vite <tag>$='le temps passe vite'</tag></item>
+			<item> je souffre dêtre idiot <tag>$='je souffre dêtre idiot'</tag></item>
+			<item> je mens constamment <tag>$='je mens constamment'</tag></item>
+			<item> je suis envieux <tag>$='je suis envieux'</tag></item>
+			<item> je ne fais aucun cadeaux <tag>$='je ne fais aucun cadeaux'</tag></item>
+			<item> je suis trop confiant <tag>$='je suis trop confiant'</tag></item>
+		</one-of>
+	</rule>
+</grammar>

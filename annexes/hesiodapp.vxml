@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" xml:lang="fr-fr" >	 
+
+<form id="start">
+	<block>
+
+	<prompt>
+		<voice gender='female'>
+			<prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">Bonjour, bienvenue dans la demeure <emphasis level="strong">déziode le magnifique.</emphasis>
+			</prosody>
+		</voice>
+		
+		<voice gender='female' category='child'>
+			<prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">Vous pouvez demander au grand dramaturge de vous conseiller sur ce que vous avez sur le keur grâce à l'une de <emphasis level="strong">ses célèbres maximes</emphasis>
+			</prosody>
+		</voice>
+	</prompt>
+	<goto next="#choix_langue"/>
+	</block>
+</form>
+
+<menu id="choix_langue"> 
+<prompt><voice gender='female'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)"> Si vous voulez parler au vieil éziode en <emphasis level="strong">français</emphasis>, tapez (1), si vous souhaitez lui parler en <emphasis level="strong">grecque</emphasis>, tapez (2). Enfin, vous pouvez quitter la demeure du poète en tapant (3).</prosody></voice></prompt>
+<choice dtmf="1" next="#menu1"/> 
+<choice dtmf="2" next="#menu2"/> 
+<choice dtmf="3" next="#fin"/>  		 		
+	<catch event="noinput nomatch error"> <reprompt/> </catch> 	
+</menu> 
+
+<form id="menu1"> <block> <prompt><voice gender="male"><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)"> Nous allons donc parler en <emphasis level="strong">français</emphasis> ! </prosody></voice></prompt> <goto next="#hesiode"/>
+ </block> </form>
+
+<form id="menu2"> <block> <prompt><voice gender="male"><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)"> hèté si ta milèsoumé sta <emphasis level="strong">éllènika</emphasis> ! </prosody></voice></prompt><goto next="#grec"/>
+ </block> </form>
+
+<form id="fin"> <block> <prompt><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)"> Au revoir et à bientôt ! N'oubliez pas votre exemplaire de Les travaux et les jours du <emphasis level="strong">grand maître</emphasis> ! C'est gratuit, profitez en ! <break time="250ms"/> anne tio sasse ! </prosody></prompt> </block> </form> 
+
+<form id="hesiode"> 
+	<field name="hesiode">	
+	<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">Va mon jeune ami, confie moi ce que tu as sur le keur que le vieil <emphasis level="strong">éziode</emphasis> puisse te conseiller</prosody></voice></prompt>  
+	<grammar src="hesiode.xml"/> 
+	<noinput>
+		<voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">Mais enfin ! Lance toi mon jeune ami, n'ai pas <emphasis level="strong">peur</emphasis> !</prosody></voice>
+		<reprompt/>
+	</noinput>
+	<nomatch>
+		<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">Ah mon jeune ami, j'ai bien peur que mes <emphasis level="strong">maximes</emphasis> aient là trouvées leur limite.</prosody></voice></prompt> <reprompt/>
+	</nomatch>
+
+	<filled namelist="hesiode">
+
+      <if cond="hesiode == 'personne ne mécoute'">
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+	 Qui n'écoute ni <emphasis level="strong">lui-même ni les autres</emphasis> est un homme <emphasis level="strong">inutile.</emphasis>
+	</prosody></voice></prompt>
+	
+	<goto next="#proposition"/>
+     <elseif cond="hesiode == 'personne ne maime'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+	 <emphasis level="strong">Aime</emphasis> celui qui t'aime, <break time='250ms'/> <emphasis level="strong">aide</emphasis> celui qui t'aide.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'les gens sont méchants'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+	 Dieu force les méchants à porter dans leur keur l'instrument de leur <emphasis level="strong">supplice.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis imparfait'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+	 L'homme le plus <emphasis level="strong">parfait</emphasis> est celui qui sait en chaque chose <emphasis level="strong">considérer la fin.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis injuste'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+	 Accueille l'esprit de <emphasis level="strong">justice</emphasis>, <break time='250ms'/> et repousse la <emphasis level="strong">violence.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis oisif'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Ce n'est point le <emphasis level="strong">travail</emphasis> qui avilit, <break time='250ms'/> mais l'<emphasis level="strong">oisiveté.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je juge les gens trop vite'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		On fait cas des uns ou des autres trop souvent sans les <emphasis level="strong">connaître.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis desordonné'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		L'<emphasis level="strong">ordre est profitable</emphasis> aux mortels, <break time='250ms'/> autant que le <emphasis level="strong">désordre leur est nuisible.</emphasis>
+	</prosody></voice></prompt>
+	<elseif cond="hesiode == 'je parle trop'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		La première des grâces est une langue qui se <emphasis level="strong">modère.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis très coquet'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Que ton <emphasis level="strong">aspect extérieur</emphasis> ne trahisse pas en toi une <emphasis level="strong">pensée mauvaise.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je mens à mes amis'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		N'use jamais à l'égard d'un <emphasis level="strong">ami</emphasis> de mensonge même pour amuser ta <emphasis level="strong">langue.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis impatient'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Garde en tout la <emphasis level="strong">mesure</emphasis> et choisis le <emphasis level="strong">moment</emphasis> : <break time='500ms'/> en toutes choses, <break time='250ms'/> c'est le principal.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'jai des problèmes de couple'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		L'homme ne peut rien rencontrer de meilleur que la <emphasis level="strong">femme</emphasis>, <break time='250ms'/> quand elle est bonne, mais rien de pire, <break time='250ms'/> quand elle est mauvaise ; <break time='500ms'/> adonnée aux fêtes, elle consume un époux robuste et le livre à la <emphasis level="strong">vieillesse.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je travaille peu'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		L'activité produit l'ouvrage, <break time='250ms'/> et le <emphasis level="strong">paresseux est toujours</emphasis> en lutte avec la misère
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je procrastine'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Ne remets point au lendemain, <break time='250ms'/> au surlendemain ; <break time='5000ms'/> qui <emphasis level="strong">diffère la peine</emphasis> ne remplit point son grenier.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis pauvre'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Si ton keur est possédé du bien d'acquérir, <break time='250ms'/> tu n'as qu'une chose à faire, <break time='500ms'/> <emphasis level="strong">travailler, <break time='250ms'/> et encore travailler.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je travaille mal'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Plus de biens demandent <emphasis level="strong">plus de soins</emphasis>, <break time='250ms'/> mais produisent davantage.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'jaime trop les femmes'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Se fier à la <emphasis level="strong">femme</emphasis>, <break time='250ms'/> c'est se fier aux voleurs.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'jai peu de biens'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		<emphasis level="strong">Un peu mis avec un peu</emphasis> fera bientôt beaucoup.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je vole'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Donner est bien, <break time='250ms'/> ravir est <emphasis level="strong">mal</emphasis> et conduit à la mort.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis radin'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		On donne au <emphasis level="strong">généreux</emphasis> ; <break time='250ms'/> on refuse à <emphasis level="strong">l'avare. </emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je ne sais qui aimer'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Il nous faut <emphasis level="strong">aimer qui nous aime</emphasis>, <break time='250ms'/> rechercher qui nous recherche. 
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je ne pense qua gagner'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Point de gains <emphasis level="strong">illégitimes</emphasis> : <break time='250ms'/> Gagner ainsi, <break time='250ms'/> c'est perdre. 
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'mon voisin est mauvais'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Qui a un honnête <emphasis level="strong">voisin</emphasis> est favorisé de la fortune. 
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis cupide'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		L'amour du gain égare <emphasis level="strong">le cœur de l'homme</emphasis> ; <break time='250ms'/> l'impudence chasse la pudeur. 
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis paresseux'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		L'homme qui se livre au <emphasis level="strong">travail</emphasis> voit croître sa fortune. 
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'jai la flemme'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		L'homme oisif est également en horreur et <emphasis level="strong">aux dieux et aux hommes</emphasis> ; <break time='250ms'/> c'est cet insecte sans aiguillon, ce frelon avide, <break time='250ms'/> qui <emphasis level="strong">s'engraisse en repos du labeur des abeilles.</emphasis> 
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'jai toujours faim'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 La faim est l'inséparable compagne de <emphasis level="strong">l'homme oisif.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je nécoute rien'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		  Qui ne veut point écouter les conseils d'autrui est un <emphasis level="strong">être inutile sur la terre.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je nai pas confiance en moi'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		  L'homme le plus parfait, <break time='250ms'/> est celui qui ne doit qu'à lui-même <emphasis level="strong">toute sa sagesse.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis mauvais'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		  Il en coûte peu pour <emphasis level="strong">commettre le mal</emphasis> ; <break time='250ms'/> la pente en est facile.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis violent'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 Prête l'oreille à la voix de la justice, <break time='250ms'/> et oublie pour toujours les <emphasis level="strong">conseils de la violence.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis trop juste'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 C'est <emphasis level="strong">un mal d'être juste</emphasis> si le plus injuste doit l'emporter.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis perdu'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 La meilleure voie est celle qui conduit aux <emphasis level="strong">actions justes.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis tropinjuste'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 À la fin la <emphasis level="strong">Justice</emphasis> remporte sur l'Injure.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je fais des erreurs'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 L'insensé apprend par son <emphasis level="strong">expérience.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'jai peur de vieillir'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 Les hommes vieillissent vite dans <emphasis level="strong">l'affliction.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'il me faut tout'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 <emphasis level="strong">La moitié</emphasis> est préférable au tout.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je veux être célèbre'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		 <emphasis level="strong">La mauvaise renommée</emphasis> est un fardeau ; <break time='250ms'/> léger à soulever, <break time='250ms'/> lourd à porter.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis malheureux'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		<emphasis level="strong">Malheureux</emphasis> est l'homme qui change souvent d'amis.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je blasphème'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Songe avec crainte à la <emphasis level="strong">justice des dieux immortels.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je naime pas mon frère'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Ne fais pas <emphasis level="strong">d'un ami</emphasis> l'égal de <emphasis level="strong">ton frère.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je ne suis pas soigneux'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		C'est le <emphasis level="strong">soin</emphasis> qui fait prospérer l'ouvrage.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis belligérant'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		La paix est la <emphasis level="strong">mère nourricière</emphasis> du pays.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'le temps passe vite'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Le temps est tantôt <emphasis level="strong">une mère</emphasis>, <break time='250ms'/> tantôt <emphasis level="strong">une marâtre.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je souffre dêtre idiot'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Pâtir rend le <emphasis level="strong">bon sens</emphasis> au sot.
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je mens constamment'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Ne mens pas pour le <emphasis level="strong">plaisir de parler.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis envieux'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		L'envie a le teint livide et <emphasis level="strong">les discours calomnieux.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je ne fais aucun cadeaux'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Les présents apaisent <emphasis level="strong">les dieux</emphasis> <break time='250ms'/> et persuadent <emphasis level="strong">les tyrans.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<elseif cond="hesiode == 'je suis trop confiant'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+		Confiance et défiance sont également la <emphasis level="strong">ruine des hommes.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition"/>
+	<else/>
+	</if>
+	</filled>
+    </field>
+ </form>
+
+ <form id="proposition"> 
+ 	<field name="proposition">
+ 		<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">Et voilà mon jeune ami, est-ce que oui ou non <emphasis level="strong">la sagesse</emphasis> du vieil éziode a satisfait ta douce et belle âme ?</prosody></voice></prompt>
+ 	<grammar xml:lang="fr-fr" root="proposition">
+	<rule id="proposition">
+		<one-of>
+			<item> non <tag>$='non'</tag></item>
+			<item> oui <tag>$='oui'</tag></item>
+		</one-of>
+	</rule>
+	</grammar>
+ 	<noinput>
+		<voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">Voyons, <emphasis level="strong">réponds moi mon jeune ami</emphasis> ! Oui ou non ?</prosody></voice>
+		<reprompt/>
+	</noinput>
+	<nomatch>
+		<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">J'ai bien peur qu'il faille répéter <emphasis level="strong">un peu plus fort</emphasis>, avec l'âge je deviens un peu dur d'oreille !</prosody></voice></prompt> <reprompt/>
+	</nomatch>
+	<filled namelist="proposition">
+      <if cond="proposition == 'oui'">
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+	 J'ai entendu <value expr="proposition"/> ? <break time='250ms'/> <emphasis level="strong">Par Athéna et Hera ! C'est fantastique, fantastique</emphasis> ! N'hésite pas à repasser mon jeune ami, si tu as besoin d'un peu de lyrisme !
+	</prosody></voice></prompt>
+	<goto next="#choix_langue"/>
+     <elseif cond="proposition == 'non'"/>
+     <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+30%)(100%,+20%)">
+	 J'ai entendu <value expr="proposition"/> ? <break time='250ms'/> <emphasis level="strong">Par Zeus</emphasis> ! Recommençons !
+	</prosody></voice></prompt>
+	<goto next="#hesiode"/>
+	<else/>
+	</if>
+	</filled>
+    </field>
+</form>
+
+<form id="grec">
+	<field name="grec">
+		<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">pèsse stonne palio <emphasis level="strong">hèziodo</emphasis> ti ékéhisse stènne kardia sou <break time="1s"/> parlez maintenant</prosody></voice></prompt>  
+	<grammar xml:lang="fr-fr" root="grec">
+	<rule id="grec">
+		<one-of>
+			<item> hé ékoussia <tag>$='hé ékoussia'</tag></item>
+			<item> glotta <tag>$='glotta'</tag></item>
+			<item> annère <tag>$='annère'</tag></item>
+			<item> guéronnetosse <tag>$='guéronnetosse'</tag></item>
+			<item> méli <tag>$='méli'</tag></item>
+		</one-of>
+	</rule>
+	</grammar>
+	<noinput>
+		<voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">prokoristé to néharo mou filou, mènne fobastè.</prosody></voice>
+		<reprompt/>
+	</noinput>
+	<nomatch>
+		<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">dènne sé <emphasis level="strong">katalabahino</emphasis> ho nearosse mou filosse.</prosody></voice></prompt> <reprompt/>
+	</nomatch>
+	<filled namelist="grec">
+	<!-- Le pouvoir relève l'homme, pour ceux qui lorsqu'ils l'exercent, montrent qui ils sont -->
+    <if cond="grec == 'hé ékoussia'">
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">
+	 <emphasis level="strong">arkè anne dra</emphasis> déhik nousinne, épi tonne hénne arkè oilloille éhissi <emphasis level="strong">fahinoménonne.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition_grec"/>
+
+	<!-- Certains ont la langue, d'autres les dents ; ceci car certains sont bavards et d'autres bons mangeurs -->
+	<elseif cond="grec == 'glotta'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">
+		allohissi ménne <emphasis level="strong">glotta</emphasis>, allohissi dé <emphasis level="strong">gomfiyoÏ</emphasis>, oille ménne gare laloïlle, oÏlle dé faguoïlle.
+	</prosody></voice></prompt>
+	<goto next="#proposition_grec"/>
+
+	<!-- Un homme équivaut à aucun homme ; car un homme seul ne parvient pas à réussir -->
+	<elseif cond="grec == 'annère'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">
+		<emphasis level="strong">éhisse annère oudéhisse annère</emphasis> ; gare ossonne oudénne ouf énosse <emphasis level="strong">katortoutaille. </emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition_grec"/>
+
+	<!-- Le soutien du vieux est ses dents ; pour ceux qui dans leur vieillesse sont gourmands -->
+	<elseif cond="grec == 'guéronnetosse'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">
+		anne drosse <emphasis level="strong">guéronnetosse</emphasis> aïe guénatoïlle baktèriaïlle ; épi tonne prosse tasse guèrasse <emphasis level="strong">pola éhitionnetonne.</emphasis>
+	</prosody></voice></prompt>
+	<goto next="#proposition_grec"/>
+
+	<!-- ni miel, ni abeille ; pour ceux qui pour un petit gain leur arrivent de gros soucis -->
+	<elseif cond="grec == 'méli'"/>
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">
+		mèdé méli, mèdé mélissasse ; épi tonne di oligonne kalonne <emphasis level="strong">megaloïsse kakohisse</emphasis> péripéssoussi.
+	</prosody></voice></prompt>
+	<goto next="#proposition_grec"/>
+	
+	<else/>
+	</if>
+	</filled>
+</field>
+</form>
+
+<form id="proposition_grec"> 
+ 	<field name="proposition_grec">
+ 		<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">kaille edo eïnaï <emphasis level="strong">au néarosse mou filou</emphasis>, miposse i sofia tou paliou èsiodou ikanopoïèsé tè gloukia sou foukè haie oki ? <break time='1s'/> pour dire oui, dites naille, pour dire non, dites oki. </prosody></voice></prompt>
+ 	<grammar xml:lang="fr-fr" root="proposition_grec">
+	<rule id="proposition_grec">
+		<one-of>
+			<!-- non -->
+			<item> oki <tag>$='oki'</tag></item>
+			<!-- oui -->
+			<item> naille <tag>$='naille'</tag></item>
+		</one-of>
+	</rule>
+	</grammar>
+ 	<noinput>
+		<voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">na mé apanne tèsété stonne néharo <emphasis level="strong">mou filou</emphasis> ! naille è oki ?</prosody></voice>
+		<reprompt/>
+	</noinput>
+	<nomatch>
+		<prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)"><emphasis level="strong">fobamaï oti préteï</emphasis> na épanalaboumé liguo pio dounata, mé tènne èlikia guinomaï liguo kofosse !</prosody></voice></prompt> <reprompt/>
+	</nomatch>
+	<filled namelist="proposition_grec">
+      <if cond="proposition_grec == 'naille'">
+        <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">
+	 akousso <value expr="proposition_grec"/>. <break time='250ms'/> <emphasis level="strong">apo tènne atèna kaille tènne hèra ! eïnaille fanne tastiko, fanne tastiko</emphasis> ! mènne distasété na sidérosété tonne néharo mou filou, anne xréiazésté liguo lourismo !
+	</prosody></voice></prompt>
+	<goto next="#choix_langue"/>
+     <elseif cond="proposition_grec == 'oki'"/>
+     <prompt><voice gender='male' category='old'><prosody contour="(0%,+20%)(50%,+100%)(100%,+20%)">
+	 akousso <value expr="proposition_grec"/>. <break time='250ms'/> <emphasis level="strong">apo tonne diya</emphasis> ! asse kekinisoumé kana !
+	</prosody></voice></prompt>
+	<goto next="#grec"/>
+	<else/>
+	</if>
+	</filled>
+    </field>
+</form>
+</vxml>
+
